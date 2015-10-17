@@ -44,6 +44,8 @@ public class BuildTreeByInorderPostorder {
     }
 
     public static void main(String[] args) {
-        System.out.println(new BuildTreeByInorderPostorder().buildTree(new int[]{1, 3, 2}, new int[]{3, 2, 1}));
+        new BuildTreeByInorderPostorder().buildTree(new int[]{1, 3, 2}, new int[]{3, 2, 1}).print();
+        new BuildTreeByInorderPostorder().buildTree(new int[]{1, 2, 3, 4, 5, 6, 7}, new int[]{1, 3, 2, 5, 7, 6, 4}).print();
+
     }
 }

@@ -10,7 +10,7 @@ public class Node {
     public final int key;
     boolean marked;
     public int rank = 1;
-    public Node sibling;
+    public Node next;
 
     public Node(int key) {
         this.parent = null;

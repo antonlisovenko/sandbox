@@ -18,7 +18,7 @@ public class Smallest0And9DivisibleNumber {
     private static int translate(int bin) {
         int result = 0;
         for (int i = Integer.toBinaryString(bin).length(); i > 0; i--) {
-            result *= result != 0 ? 10 : 0;
+            result *= 10;
             int mask = 1 <<  (i - 1);
             result += (bin & mask) == mask ? 9 : 0;
         }

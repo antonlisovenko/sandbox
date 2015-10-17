@@ -4,30 +4,30 @@ package com.alisovenko.coderust.arrays;
  * @author alisovenko 27.12.14
  */
 public class FindInRotated {
-    public static int findInRotated(int[] array, int i, int l, int h) {
+    public static int findInRotated(int[] array, int v, int l, int h) {
         if (l > h) {
             return -1;
         }
         int med = (l + h) / 2;
 
-        if (array[med] == i) {
+        if (array[med] == v) {
             return med;
         }
+        // array[med] < array[h] means the right part is sorted
         if (array[med] < array[h]) {
-            // we are inside sorted part from med - k to h
-            if (i > array[med] && i <= array[h]) {
+            if (v > array[med] && v <= array[h]) {
                 // the element we look for is inside the right range
-                return findInRotated(array, i, med + 1, h);
+                return findInRotated(array, v, med + 1, h);
             }
             // it is inside left range
-            return findInRotated(array, i, l, med - 1);
+            return findInRotated(array, v, l, med - 1);
         }
         else {
-            // we are inside sorted part from l to med -1
-            if (i < array[med] && i >= array[l]) {
-                return findInRotated(array, i, l, med - 1);
+            // part from l to med -1 is sorted (left part)
+            if (v < array[med] && v >= array[l]) {
+                return findInRotated(array, v, l, med - 1);
             }
-            return findInRotated(array, i, med + 1, h);
+            return findInRotated(array, v, med + 1, h);
         }
     }
 

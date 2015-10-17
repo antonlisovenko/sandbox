@@ -28,6 +28,7 @@ public class KnapsackProblem {
 		System.out.printf("Weight: %d, size: %d\n", W, N);
 		int[] v = new int[N];
 		int[] w = new int[N];
+
 		int p = 0;
 		while ((line = reader.readLine()) != null) {
 			String[] chunks = line.split(" ");

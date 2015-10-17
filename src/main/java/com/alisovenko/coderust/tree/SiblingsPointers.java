@@ -20,14 +20,14 @@ public class SiblingsPointers {
 
         while (current != null) {
             if (current.left != null) {
-                last.sibling = current.left;
+                last.next = current.left;
                 last = current.left;
             }
             if (current.right != null) {
-                last.sibling = current.right;
+                last.next = current.right;
                 last = current.right;
             }
-            current = current.sibling;
+            current = current.next;
         }
     }
     public static void main(String[] args) {
