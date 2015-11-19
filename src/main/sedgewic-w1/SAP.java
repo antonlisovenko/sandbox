@@ -1,3 +1,5 @@
+import edu.princeton.cs.algs4.*;
+
 /**
  * <p/>
  * alisovenko 06.04.13
