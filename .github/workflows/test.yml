@@ -1,0 +1,28 @@
+name: Create release branches
+on:
+  push:
+    branches:
+      - preproduction
+#  pull_request:
+#    types: [closed]
+#    branches:
+#      - main
+
+jobs:
+  create-release-preproduction:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download files from the current repository
+        uses: actions/checkout@v2
+        with:
+          ref: preproduction
+#      - name: Create new branch
+#        uses: peterjgrainger/action-create-branch@v2.0.1
+#        with:
+#          branch: ${{ GITHUB_REF }}-preproduction
+      - name: Cherry-pick last commit
+        run: |
+          git checkout -b ${{ GITHUB_REF }}-preproduction; 
+          git cherry-pick main
+          git push --set-upstream origin ${{ GITHUB_REF }}-preproduction
+
