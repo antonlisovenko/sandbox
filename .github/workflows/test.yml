@@ -16,8 +16,7 @@ jobs:
         uses: actions/checkout@v2
 #        with:
 #          ref: preproduction
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+
       - name: Cherry-pick last commit
         run: |
           set -x
@@ -31,7 +30,9 @@ jobs:
           git log
           
           git checkout -b ${branch_name}
-          git cherry-pick master
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
+#          git cherry-pick master
 #          git push origin ${branch_name}
 #          echo "done"
 #      - name: Create PR
