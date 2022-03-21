@@ -24,6 +24,7 @@ jobs:
         run: env
       - name: Cherry-pick last commit
         run: |
+          set -x
           branch_name=$GITHUB_REF
           echo "${branch_name}"
           git checkout -b ${branch_name-preproduction}; 
