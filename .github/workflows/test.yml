@@ -28,11 +28,11 @@ jobs:
           branch_name="${sha}-preproduction"
           git fetch
           git checkout preproduction
-          git status
+          git log
           
           git checkout -b ${branch_name}
-          git cherry-pick ${sha}
-          git push origin ${branch_name}
-          echo "done"
+#          git cherry-pick ${sha}
+#          git push origin ${branch_name}
+#          echo "done"
 #      - name: Create PR
 
