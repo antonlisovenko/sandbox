@@ -2,7 +2,7 @@ name: Create release branches
 on:
   push:
     branches:
-      - test-preproduction
+      - master
 #  pull_request:
 #    types: [closed]
 #    branches:
