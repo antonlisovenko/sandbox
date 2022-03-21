@@ -16,9 +16,3 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: foo
-
-
-#      - name: Setup upterm session
-#        uses: lhotari/action-upterm@v1
-#      - name: Create PR
-
