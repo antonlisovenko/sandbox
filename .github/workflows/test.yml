@@ -30,10 +30,10 @@ jobs:
           git log
           
           git checkout -b ${branch_name}
+          echo "done"
       - name: Setup upterm session
         uses: lhotari/action-upterm@v1
 #          git cherry-pick master
 #          git push origin ${branch_name}
-#          echo "done"
 #      - name: Create PR
 
