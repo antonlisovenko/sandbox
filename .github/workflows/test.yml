@@ -23,6 +23,7 @@ jobs:
           set -x          
           git config --global user.email "mu-bot@toasttab.com"
           git config --global user.name "Ministry of User Bot"
+          git status
           sha=$(git log -n 1 --pretty=format:"%H")
           branch_name="${sha}-preproduction"
           git checkout -b ${branch_name}
