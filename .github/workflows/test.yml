@@ -32,7 +32,7 @@ jobs:
           git checkout -b ${branch_name}
           git cherry-pick "${sha}"
           git push origin ${branch_name}
-#          echo "done"
+          echo "done"
 #      - name: Setup upterm session
 #        uses: lhotari/action-upterm@v1
 #      - name: Create PR
