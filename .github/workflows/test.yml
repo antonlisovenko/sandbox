@@ -16,23 +16,4 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Cherry-pick last commit
-        run: |
-          set -x
-          git config --global user.email "mu-bot@toasttab.com"
-          git config --global user.name "Ministry of User Bot"
-          
-          sha=$(git log -n 1 --pretty=format:"%H")
-          branch_name="${sha}-preproduction"
-          git fetch
-          git checkout preproduction
-#          git log
-          
-          git checkout -b ${branch_name}
-          git cherry-pick "${sha}"
-          git push origin ${branch_name}
-          echo "done"
-#      - name: Setup upterm session
-#        uses: lhotari/action-upterm@v1
-#      - name: Create PR
 
