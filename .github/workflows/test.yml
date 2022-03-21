@@ -27,7 +27,8 @@ jobs:
           sha=$(git log -n 1 --pretty=format:"%H")
           branch_name="${sha}-preproduction"
           git fetch
-          git checkout preproduction          
+          git checkout preproduction
+          git status
           
           git checkout -b ${branch_name}
           git cherry-pick ${sha}
