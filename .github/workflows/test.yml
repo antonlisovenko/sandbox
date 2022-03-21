@@ -2,7 +2,7 @@ name: Create release branches
 on:
   push:
     branches:
-      - preproduction
+      - test-preproduction
 #  pull_request:
 #    types: [closed]
 #    branches:
@@ -20,9 +20,12 @@ jobs:
 #        uses: peterjgrainger/action-create-branch@v2.0.1
 #        with:
 #          branch: ${{ GITHUB_REF }}-preproduction
+      - name: Print environment
+        run: env
       - name: Cherry-pick last commit
         run: |
           branch_name=$GITHUB_REF
+          echo "${branch_name}"
           git checkout -b ${branch_name-preproduction}; 
           git cherry-pick main
           git push --set-upstream origin ${branch_name-preproduction}
