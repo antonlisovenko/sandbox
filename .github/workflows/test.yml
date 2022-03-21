@@ -31,7 +31,7 @@ jobs:
           git log
           
           git checkout -b ${branch_name}
-#          git cherry-pick ${sha}
+          git cherry-pick ${sha}
 #          git push origin ${branch_name}
 #          echo "done"
 #      - name: Create PR
