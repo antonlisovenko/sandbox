@@ -2,7 +2,7 @@ name: Create release branches
 on:
   push:
     branches:
-      - preproduction
+      - test-preproduction
 #  pull_request:
 #    types: [closed]
 #    branches:
@@ -12,18 +12,25 @@ jobs:
   create-release-preproduction:
     runs-on: ubuntu-latest
     steps:
-      - name: Download files from the current repository
+      - name: Checkout
         uses: actions/checkout@v2
-        with:
-          ref: preproduction
-#      - name: Create new branch
-#        uses: peterjgrainger/action-create-branch@v2.0.1
 #        with:
-#          branch: ${{ GITHUB_REF }}-preproduction
+#          ref: preproduction
+      - name: Print environment
+        run: env
       - name: Cherry-pick last commit
         run: |
-          branch_name=$GITHUB_REF
-          git checkout -b ${branch_name-preproduction}; 
-          git cherry-pick main
-          git push --set-upstream origin ${branch_name-preproduction}
+          set -x
+          git config --global user.email "mu-bot@toasttab.com"
+          git config --global user.name "Ministry of User Bot"
+          
+          sha=$(git log -n 1 --pretty=format:"%H")
+          branch_name="${sha}-preproduction"
+          git fetch
+          git checkout preproduction          
+          
+          git checkout -b ${branch_name}
+          git cherry-pick ${sha}
+          git push origin ${branch_name}
+#      - name: Create PR
 
