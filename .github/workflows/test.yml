@@ -22,7 +22,8 @@ jobs:
 #          branch: ${{ GITHUB_REF }}-preproduction
       - name: Cherry-pick last commit
         run: |
-          git checkout -b ${{ env.GITHUB_REF }}-preproduction; 
+          branch_name=$GITHUB_REF
+          git checkout -b ${branch_name-preproduction}; 
           git cherry-pick main
-          git push --set-upstream origin ${{ env.GITHUB_REF }}-preproduction
+          git push --set-upstream origin ${branch_name-preproduction}
 
