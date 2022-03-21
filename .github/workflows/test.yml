@@ -27,13 +27,13 @@ jobs:
           branch_name="${sha}-preproduction"
           git fetch
           git checkout preproduction
-          git log
+#          git log
           
           git checkout -b ${branch_name}
           git cherry-pick "${sha}"
-          echo "done"
+          git push origin ${branch_name}
+#          echo "done"
 #      - name: Setup upterm session
 #        uses: lhotari/action-upterm@v1
-#          git push origin ${branch_name}
 #      - name: Create PR
 
