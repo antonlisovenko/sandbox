@@ -12,9 +12,9 @@ jobs:
   create-release-preproduction:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-#          fetch-depth: 0
           path: foo
       - name: Cherry-pick last commit
         run: |
