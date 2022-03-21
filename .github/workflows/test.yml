@@ -14,18 +14,21 @@ jobs:
     steps:
       - name: Download files from the current repository
         uses: actions/checkout@v2
-        with:
-          ref: preproduction
+#        with:
+#          ref: preproduction
       - name: Print environment
         run: env
       - name: Cherry-pick last commit
         run: |
-          set -x          
+          set -x
           git config --global user.email "mu-bot@toasttab.com"
           git config --global user.name "Ministry of User Bot"
-          git status
+          
           sha=$(git log -n 1 --pretty=format:"%H")
           branch_name="${sha}-preproduction"
+          git checkout preproduction
+          git fetch
+          
           git checkout -b ${branch_name}
           git cherry-pick ${sha}
           git push origin ${branch_name}
