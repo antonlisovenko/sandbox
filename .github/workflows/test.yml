@@ -49,7 +49,7 @@ jobs:
           title: ${{ env.commit_title }} (preproduction)
           labels: preproduction
           branch: ${{ env.branch_name }}
-          body: This PR was created automatically to ${{ env.branch_name }} from the commit https://github.com/antonlisovenko/sandbox/commit/${{ commit_sha }}
+          body: This PR was created automatically to ${{ env.branch_name }} from the commit https://github.com/antonlisovenko/sandbox/commit/${{ env.commit_sha }}
 
 
 #      - name: Setup upterm session
