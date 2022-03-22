@@ -24,10 +24,11 @@ jobs:
           
           sha=$(git log -n 1 --pretty=format:"%H")
           title=$(git log -n 1 --pretty=format:"%s")
-          echo "commit_title=${title}" >> $GITHUB_ENV
           
           branch_name="${sha}-preproduction"
           echo "branch_name=${branch_name}" >> $GITHUB_ENV
+          echo "commit_title=${title}" >> $GITHUB_ENV
+          echo "commit_sha=${sha}" >> $GITHUB_ENV
           
           git fetch
           git checkout preproduction
@@ -45,9 +46,10 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
           base: preproduction
-          title: ${{ env.commit_title }}
+          title: ${{ env.commit_title }} (preproduction)
           labels: preproduction
           branch: ${{ env.branch_name }}
+          body: This PR was created automatically to ${{ env.branch_name }} from the commit https://github.com/antonlisovenko/sandbox/commit/${{ commit_sha }}
 
 
 #      - name: Setup upterm session
