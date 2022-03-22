@@ -36,7 +36,7 @@ jobs:
           git cherry-pick "${sha}"
           git status
           git push --force-with-lease origin ${branch_name}
-#          echo "done"
+          echo "done"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
