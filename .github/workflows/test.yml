@@ -33,14 +33,16 @@ jobs:
           git checkout preproduction
           
           git checkout -b ${branch_name}
+          git cherry-pick "${sha}"
+          git status
+          git push --force-with-lease origin ${branch_name}
+
 #          echo "done"
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+
+#      - name: Setup upterm session
+#        uses: lhotari/action-upterm@v1
 
 
-#          git cherry-pick "${sha}"
-#          git status
-#          git push --force-with-lease origin ${branch_name}
 
 #      - name: Create Pull Request
 #        uses: peter-evans/create-pull-request@v3
