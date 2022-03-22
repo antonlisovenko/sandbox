@@ -35,20 +35,23 @@ jobs:
           git checkout -b ${branch_name}
           git cherry-pick "${sha}"
           git status
-          git push --force-with-lease origin ${branch_name}
+#          git push --force-with-lease origin ${branch_name}
 
           echo "done"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          base: preproduction
+          title: ${{ env.commit_title }}
+          labels: preproduction
+          branch: ${{ env.branch_name }}
+
 
 #      - name: Setup upterm session
 #        uses: lhotari/action-upterm@v1
 
 
 
-#      - name: Create Pull Request
-#        uses: peter-evans/create-pull-request@v3
-#        with:
-#          token: ${{ secrets.GH_TOKEN }}
-#          base: preproduction
-#          title: ${{ env.commit_title }}
-#          labels: preproduction
-#          branch: ${{ env.branch_name }}
+
