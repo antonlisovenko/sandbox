@@ -33,10 +33,10 @@ jobs:
           git checkout preproduction
           
           git checkout -b ${branch_name}
+          git push --force-with-lease origin ${branch_name}
+          
           git cherry-pick "${sha}"
           git status
-
-#          git push --force-with-lease origin ${branch_name}
 
 #          echo "done"
 
