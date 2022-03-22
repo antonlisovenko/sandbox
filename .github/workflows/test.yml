@@ -34,7 +34,8 @@ jobs:
           
           git checkout -b ${branch_name}
           git cherry-pick "${sha}"
-          git push origin ${branch_name}
+          git status
+          git push --force-with-lease origin ${branch_name}
 #          echo "done"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
