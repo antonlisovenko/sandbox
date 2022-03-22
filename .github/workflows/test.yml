@@ -37,7 +37,7 @@ jobs:
           git status
           git push --force-with-lease origin ${branch_name}
 
-#          echo "done"
+          echo "done"
 
 #      - name: Setup upterm session
 #        uses: lhotari/action-upterm@v1
