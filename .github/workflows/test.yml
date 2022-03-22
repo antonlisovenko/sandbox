@@ -18,16 +18,29 @@ jobs:
           fetch-depth: 0
       - name: Cherry-pick last commit
         run: |
-               set -x
-               git config --global user.email "mu-bot@toasttab.com"
-               git config --global user.name "Ministry of User Bot"
-               
-               sha=$(git log -n 1 --pretty=format:"%H")
-               branch_name="${sha}-preproduction"
-               git fetch
-               git checkout preproduction
-               
-               git checkout -b ${branch_name}
-               git cherry-pick "${sha}"
-               git push origin ${branch_name}
-               echo "done"
+          set -x
+          git config --global user.email "mu-bot@toasttab.com"
+          git config --global user.name "Ministry of User Bot"
+          
+          sha=$(git log -n 1 --pretty=format:"%H")
+          title=$(git log -n 1 --pretty=format:"%s")
+          echo "commit_title=${title}" >> $GITHUB_ENV
+          
+          branch_name="${sha}-preproduction"
+          echo "branch_name=${branch_name}" >> $GITHUB_ENV
+          
+          git fetch
+          git checkout preproduction
+          
+          git checkout -b ${branch_name}
+          git cherry-pick "${sha}"
+          git push origin ${branch_name}
+          echo "done"
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          base: preproduction
+          title: ${{ env.commit_title }}
+          labels: preproduction
+          branch: ${{ env.branch_name }}
