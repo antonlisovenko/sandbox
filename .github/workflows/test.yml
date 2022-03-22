@@ -17,10 +17,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Cherry-pick last commit
-        run: .github/workflows/scripts/perform-cherrypick.sh
-        shell: bash
-        with:
-          environment: preproduction
+        run: .github/workflows/scripts/perform-cherrypick.sh preproduction
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
@@ -34,6 +31,7 @@ jobs:
 
 #      - name: Setup upterm session
 #        uses: lhotari/action-upterm@v1
+#
 
 
 
