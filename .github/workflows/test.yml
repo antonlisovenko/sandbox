@@ -17,30 +17,10 @@ jobs:
         with:
           fetch-depth: 0
       - name: Cherry-pick last commit
-        run: |
-          set -x
-          git config --global user.email "mu-bot@toasttab.com"
-          git config --global user.name "Ministry of User Bot"
-          
-          sha=$(git log -n 1 --pretty=format:"%H")
-          title=$(git log -n 1 --pretty=format:"%s")
-          
-          branch_name="${sha}-preproduction"
-          echo "branch_name=${branch_name}" >> $GITHUB_ENV
-          echo "commit_title=${title}" >> $GITHUB_ENV
-          echo "commit_sha=${sha}" >> $GITHUB_ENV
-          
-          git fetch
-          git checkout preproduction
-          
-          git checkout -b ${branch_name}
-          git push --force-with-lease origin ${branch_name}
-          
-          git cherry-pick "${sha}"
-          git status
-
-#          echo "done"
-
+        run: .github/workflows/scripts/perform-cherrypick.sh
+        shell: bash
+        with:
+          environment: preproduction
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
@@ -49,7 +29,7 @@ jobs:
           title: ${{ env.commit_title }} (preproduction)
           labels: preproduction
           branch: ${{ env.branch_name }}
-          body: This PR was created automatically to ${{ env.branch_name }} from the commit https://github.com/antonlisovenko/sandbox/commit/${{ env.commit_sha }}
+          body: This PR was created automatically to preproduction from the commit https://github.com/antonlisovenko/sandbox/commit/${{ env.commit_sha }}
 
 
 #      - name: Setup upterm session
